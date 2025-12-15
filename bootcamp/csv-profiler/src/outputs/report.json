@@ -1,0 +1,32 @@
+{
+  "rows": 4,
+  "columns": [
+    "name",
+    "age",
+    "city",
+    "salary"
+  ],
+  "notes": [
+    "not Empty dataset"
+  ],
+  "missing": {
+    "name": 0,
+    "age": 1,
+    "city": 1,
+    "salary": 1
+  },
+  "non_empty_counts": {
+    "name": 4,
+    "age": 3,
+    "city": 3,
+    "salary": 3
+  },
+  "types": {
+    "name": "text",
+    "age": "number",
+    "city": "text",
+    "salary": "number"
+  },
+  "max age": "31",
+  "max salary": "9000"
+}
