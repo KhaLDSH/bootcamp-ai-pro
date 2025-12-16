@@ -27,6 +27,13 @@
     "city": "text",
     "salary": "number"
   },
-  "max age": "31",
-  "max salary": "9000"
+  "max age": 31,
+  "max salary": 15000,
+  "num stats": {
+    "count": 3,
+    "unique": 3,
+    "min_num": 23.0,
+    "max_num": 31.0,
+    "mean": 27.666666666666668
+  }
 }

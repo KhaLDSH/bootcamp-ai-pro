@@ -34,11 +34,17 @@ def write_markdown(report: dict, path: str | Path) -> None:
         lines.append("| :--- | :---: | :---: | :---: | :---: | :---: |")
         for col in cols:
             if col == 'age':
-                lines.append(f'| {col} | {missing[col]} | {non_missing[col]} | {report["types"][col]} | {report["max age"]}')      
+                lines.append(f'| {col} | {missing[col]} | {non_missing[col]} | {report["types"][col]} | {report["max age"]} | { report["max salary"] }')      
             else:
-                lines.append(f'| {col} | {missing[col]} | {non_missing[col]} | {report["types"][col]} | { 0 }')      
+                lines.append(f'| {col} | {missing[col]} | {non_missing[col]} | {report["types"][col]} | {0} | {0}')      
         lines.append("\n") # Add a newline after the table
-        
+    
+    lines.append(f"\nnumrical status: \tMAX=\t{report['num stats']['max_num']}") 
+    lines.append(f"\nnumrical status: \tMIN=\t{report['num stats']['min_num']}") 
+    lines.append(f"\nnumrical status: \tMEAN=\t{report['num stats']['mean']}") 
+    lines.append(f"\nnumrical status: \tcount=\t{report['num stats']['count']}") 
+    lines.append(f"\nnumrical status: \tunique=\t{report['num stats']['unique']}")
+     
     full_content = "\n".join(lines)
     
     try:

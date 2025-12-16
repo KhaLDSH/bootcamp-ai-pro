@@ -7,7 +7,7 @@ def main() -> None:
 	print(rows)
  
 	report = basic_profile(rows)
-	print("report= ", report)
+	print("\n\nreport= \n", report, "\n")
  
 	write_json(report,"outputs/report.json")
 	write_markdown(report, "outputs/report.md")
