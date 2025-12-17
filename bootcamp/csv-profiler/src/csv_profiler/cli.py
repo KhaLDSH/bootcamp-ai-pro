@@ -3,8 +3,7 @@ import time
 import typer
 from pathlib import Path
 
-# NOTE: These imports (csv_profiler.io, etc.) require those modules to exist 
-# in your project/environment, but the structure assumes they are correct.
+
 from csv_profiler.io import read_csv_rows
 from csv_profiler.profiling import profile_rows
 from csv_profiler.render import render_markdown
@@ -18,9 +17,6 @@ def profile(
     report_name: str = typer.Option("report", "--report-name", help="Base name for outputs"),
     preview: bool = typer.Option(False, "--preview", help="Print a short summary"),
 ):
-    """
-    Reads a CSV, profiles the rows, generates reports, and writes output files.
-    """
     typer.echo(f"Starting profile for: {input_path}")
     
     try:
@@ -41,7 +37,6 @@ def profile(
         
         # 5. Write JSON Report
         json_path = out_dir / f"{report_name}.json"
-        # ensure_ascii=False is good for saving non-Latin characters
         json_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
         typer.secho(f"Wrote JSON report to: {json_path}", fg=typer.colors.GREEN)
         
@@ -62,7 +57,6 @@ def profile(
     except Exception as e:
         # 8. Error Handling
         typer.secho(f"Error during profiling: {e}", fg=typer.colors.RED)
-        # Re-raise the exception after printing a user-friendly message
         # Typer.Exit(code=1) is the standard way to indicate failure
         raise typer.Exit(code=1) 
 

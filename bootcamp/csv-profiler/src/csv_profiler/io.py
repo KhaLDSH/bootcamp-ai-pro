@@ -10,23 +10,3 @@ def read_csv_rows(path: str | Path) -> list[dict[str, str]]:
         reader = DictReader(f)
         return [dict(row) for row in reader]
 
-
-# import csv
-
-# def read_csv_rows(file_path):
-#     rows = []
-#     try:
-#         with open(file_path, mode="r", newline="", encoding="utf-8") as csv_file:
-#             reader = csv.reader(csv_file)
-            
-#             for row in reader:
-#                 rows.append(row)
-
-#     except FileNotFoundError:
-#         print(f"Error: File '{file_path}' not found.")
-#     except PermissionError:
-#         print(f"Error: No permission to read '{file_path}'.")
-#     except Exception as e:
-#         print(f"Unexpected error: {e}")
-        
-#     return rows

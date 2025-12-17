@@ -111,14 +111,3 @@ def basic_profile(rows: list[dict[str, str]]) -> dict:
         "num stats": num_stats
     }
     return report
-    # report.update()
-    # return {
-    #     "rows": len(rows),
-    #     "columns": columns,
-    #     "notes": ["not Empty dataset"],
-    #     "missing": missing,
-    #     "non_empty_counts": non_empty,
-    #     "types": types,
-    #     "max age": max_age,
-    #     "max salary": max_salary
-    # }
