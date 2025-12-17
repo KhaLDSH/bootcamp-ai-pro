@@ -1,55 +1,21 @@
-from __future__ import annotations
+from datetime import datetime
 
-import json
-from pathlib import Path
-
-def write_json(report: dict, path: str | Path) -> None:
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
-
-
-def write_markdown(report: dict, path: str | Path) -> None:    
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    
-    cols = report.get("columns", [])
-    missing = report.get("missing", {})
-    non_missing = report.get("non_empty_counts", {})
-
+def render_markdown(report: dict) -> str:
     lines: list[str] = []
-    lines.append("# CSV Profiling Report\n")
-    lines.append(f"- Rows: **{report.get('rows', 0)}**")
+    lines.append(f"# CSV Profiling Report\n")
+    lines.append(f"Generated: {datetime.now().isoformat(timespec='seconds')}\n")
+    lines.append("## Summary\n")
+    lines.append(f"- Rows: **{report['n_rows']}**")
+    lines.append(f"- Columns: **{report['n_cols']}**\n")
+    lines.append("## Columns\n")
+    lines.append("| name | type | missing | missing_pct | unique |")
+    lines.append("|---|---:|---:|---:|---:|")
+    lines.extend([
+    f"| {c['name']} | {c['type']} | {c['missing']} | {c['missing_pct']:.1f}% | {c['unique']} |"
+    for c in report["columns"]
+    ])
     
-    lines.append("## Overview\n")
-    lines.append(f"- Total Rows: **{report.get('rows', 0)}**\n")
-    
-    
-    lines.append("## Column Details\n")
-    
-    if not cols:
-        lines.append("*No column data available to display.*\n")
-    else:
-        lines.append("| Column | Missing Count | non missing count | type | max age | max salary")
-        lines.append("| :--- | :---: | :---: | :---: | :---: | :---: |")
-        for col in cols:
-            if col == 'age':
-                lines.append(f'| {col} | {missing[col]} | {non_missing[col]} | {report["types"][col]} | {report["max age"]} | { report["max salary"] }')      
-            else:
-                lines.append(f'| {col} | {missing[col]} | {non_missing[col]} | {report["types"][col]} | {0} | {0}')      
-        lines.append("\n") # Add a newline after the table
-    
-    lines.append(f"\nnumrical status: \tMAX=\t{report['num stats']['max_num']}") 
-    lines.append(f"\nnumrical status: \tMIN=\t{report['num stats']['min_num']}") 
-    lines.append(f"\nnumrical status: \tMEAN=\t{report['num stats']['mean']}") 
-    lines.append(f"\nnumrical status: \tcount=\t{report['num stats']['count']}") 
-    lines.append(f"\nnumrical status: \tunique=\t{report['num stats']['unique']}")
-     
-    full_content = "\n".join(lines)
-    
-    try:
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write(full_content)
-            
-    except Exception as e:
-        print(f"Error writing Markdown file: {e}")
+    lines.append("\n## Notes\n")
+    lines.append("- Missing values are: `''`, `na`, `n/a`, `null`, `none`, `nan` (case-insensitive)")
+   
+    return "\n".join(lines)
