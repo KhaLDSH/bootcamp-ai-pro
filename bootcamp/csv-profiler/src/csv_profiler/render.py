@@ -1,5 +1,7 @@
 from datetime import datetime
 
+
+
 def render_markdown(report: dict) -> str:
     lines: list[str] = []
     lines.append(f"# CSV Profiling Report\n")
