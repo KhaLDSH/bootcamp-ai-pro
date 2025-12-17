@@ -13,8 +13,8 @@ Ensure you have [uv](https://github.com/astral-sh/uv) installed.
 Clone the repository and navigate to the project root:
 
 \`\`\`bash
-'git clone https://github.com/KhaLDSH/bootcamp-ai-pro.git'
-'cd bootcamp-ai-pro/bootcamp/csv-profiler'
+git clone https://github.com/KhaLDSH/bootcamp-ai-pro.git
+cd bootcamp-ai-pro/bootcamp/csv-profiler
 \`\`\`
 
 Install dependencies and set up the local environment:
