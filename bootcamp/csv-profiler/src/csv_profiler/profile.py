@@ -1,7 +1,10 @@
-# from moudels.colmun_profile import ColumnProfile
-
+# ---------------------------------
+# helpers
+# ---------------------------------
+# -- is_missing -- try float -- infer_type
+# ---------------------------------
 MISSING = {"","na","n/a","null","none","nan"}
-def is_missing(value:str):
+def is_missing(value:str) -> bool:
     if value is None:
         return True
     cleand = value.strip().casefold()
@@ -22,92 +25,45 @@ def infer_type(values: list[str]) -> str:
             return "text"
     return "number"
 
-def column_values(rows: list[dict[str,str]], col:str) -> list[str]:
-    return [row.get(col, "") for row in rows]
-    
-def numric_stats(values: list[str]) -> dict:
-    # values per column
-    usable = [v for v in values if not is_missing(v)]
-    missing = len(values) - len(usable)
-    
-    nums: list[float] = []
-    for v in usable:
-        x = try_float(v)
-        if x is None:
-            print("\nNon-numric is found !!!!\n")
-        else:
-            nums.append(float(v))
-            
-    count = len(nums)
-    unique = len(set(nums))
-    min_num = min(nums)
-    max_num = max(nums)
-    mean = sum(nums) / count
-    
-    
-    return {
-        "count": count, 
-        "unique": unique,
-        "min_num": min_num,
-        "max_num": max_num,
-        "mean": mean
-        }
-    
-    
-def basic_profile(rows: list[dict[str, str]]) -> dict:
-    if not rows:
-        return {
-            "rows": 0,
-            "columns": {},
-            "notes": ["Empty dataset"]
-        }
 
-    columns = list(rows[0].keys())
-    missing = {c: 0 for c in columns}
-    non_empty = {c: 0 for c in columns}
-    
-    num_stats = numric_stats(column_values(rows, "age"))
-    types = {}
 
-    ages = []
-    salaries = []
-    
-    for row in rows:
-        print("row= ",row)
+
+# ---------------------------------
+# profiler
+# ---------------------------------
+def profile_rows(rows: list[dict[str, str]]) -> dict:
+    n_rows, columns = len(rows), list(rows[0].keys())
+    col_profiles = []
+    for col in columns:
+        values = [r.get(col, "") for r in rows]
+        usable = [v for v in values if not is_missing(v)]
+        missing = len(values) - len(usable)
+        inferred = infer_type(values)
+        unique = len(set(usable))
         
-        age = row['age']
-        salary = row['salary']
-        
-        if infer_type(age) == 'number':
-            ages.append(int(age))
-        if infer_type(salary) == 'number':
-            salaries.append(int(salary))
-            
-    max_age = max(ages)
-    max_salary = max(salaries)
-    
-    
-    for row in rows:
-        for c in columns:
-            v = (row.get(c).strip() or "")
-            if v == "":
-                missing[c] += 1
-            else:
-                non_empty[c] += 1
-                types[c] = infer_type(v)
+        profile = {
+            "name": col,
+            "type": inferred,
+            "missing": missing,
+            "missing_pct": 100.0 * missing / n_rows if n_rows else 0.0,
+            "unique": unique,
+        }
+        if inferred == "number":
+            nums = [try_float(v) for v in usable]
+            nums = [x for x in nums if x is not None]
+            if nums:
+                profile.update({"min": min(nums), "max": max(nums), "mean": sum(nums) / len(nums)})
+                col_profiles.append(profile)
+        # else:
+        #     count: dict[str: int] = {}
+        #     for v in usable:
+        #         count[v] = count.get(v, 0)+1
                 
-    
-                    
+        #     top_items = sorted()
+            
+        #     if text:
+        #         profile.update({"commen":})
+                
+    return {"n_rows": n_rows, "n_cols": len(columns), "columns": col_profiles}
 
-    report = {
-        "rows": len(rows),
-        "columns": columns,
-        "notes": ["not Empty dataset"],
-        "missing": missing,
-        "non_empty_counts": non_empty,
-        "types": types,
-        "max age": max_age,
-        "max salary": max_salary,
-        "num stats": num_stats
-    }
-    return report
+
