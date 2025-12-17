@@ -1,39 +1,27 @@
 {
-  "rows": 4,
+  "n_rows": 10,
+  "n_cols": 4,
   "columns": [
-    "name",
-    "age",
-    "city",
-    "salary"
+    {
+      "name": "age",
+      "type": "number",
+      "missing": 1,
+      "missing_pct": 10.0,
+      "unique": 3,
+      "min": 23.0,
+      "max": 31.0,
+      "mean": 29.88888888888889
+    },
+    {
+      "name": "salary",
+      "type": "number",
+      "missing": 1,
+      "missing_pct": 10.0,
+      "unique": 3,
+      "min": 9000.0,
+      "max": 15000.0,
+      "mean": 14000.0
+    }
   ],
-  "notes": [
-    "not Empty dataset"
-  ],
-  "missing": {
-    "name": 0,
-    "age": 1,
-    "city": 1,
-    "salary": 1
-  },
-  "non_empty_counts": {
-    "name": 4,
-    "age": 3,
-    "city": 3,
-    "salary": 3
-  },
-  "types": {
-    "name": "text",
-    "age": "number",
-    "city": "text",
-    "salary": "number"
-  },
-  "max age": 31,
-  "max salary": 15000,
-  "num stats": {
-    "count": 3,
-    "unique": 3,
-    "min_num": 23.0,
-    "max_num": 31.0,
-    "mean": 27.666666666666668
-  }
+  "timing_ms": 0.5486
 }
