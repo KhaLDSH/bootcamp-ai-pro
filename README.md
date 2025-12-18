@@ -38,7 +38,7 @@ Install dependencies and set up the local environment:
 #### **Web UI Mode**
 ***bash***
 
-`uv run streamlit run src/csv_profiler/app.py
+`uv run streamlit run src/app.py
 `
 
 ---
