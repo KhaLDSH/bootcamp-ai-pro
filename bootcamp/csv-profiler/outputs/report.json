@@ -1,0 +1,85 @@
+{
+  "n_rows": 50,
+  "n_cols": 4,
+  "columns": [
+    {
+      "name": "name",
+      "type": "text",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 34,
+      "most commen": [
+        {
+          "value": "Aisha",
+          "count": 6
+        },
+        {
+          "value": "Sara",
+          "count": 5
+        },
+        {
+          "value": "Khalid",
+          "count": 5
+        },
+        {
+          "value": "Fahad",
+          "count": 4
+        },
+        {
+          "value": "Abdulrahman",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "name": "age",
+      "type": "number",
+      "missing": 1,
+      "missing_pct": 2.0,
+      "unique": 23,
+      "min": 21.0,
+      "max": 50.0,
+      "mean": 30.408163265306122
+    },
+    {
+      "name": "city",
+      "type": "text",
+      "missing": 2,
+      "missing_pct": 4.0,
+      "unique": 10,
+      "most commen": [
+        {
+          "value": "Riyadh",
+          "count": 18
+        },
+        {
+          "value": "Jeddah",
+          "count": 8
+        },
+        {
+          "value": "Mecca",
+          "count": 5
+        },
+        {
+          "value": "Medina",
+          "count": 4
+        },
+        {
+          "value": "Dammam",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "name": "salary",
+      "type": "number",
+      "missing": 2,
+      "missing_pct": 4.0,
+      "unique": 30,
+      "min": 7800.0,
+      "max": 30000.0,
+      "mean": 13583.333333333334
+    }
+  ],
+  "timing_ms": 1.4111
+}

@@ -1,3 +1,5 @@
+TOP_K = 5
+
 # ---------------------------------
 # helpers
 # ---------------------------------
@@ -54,15 +56,17 @@ def profile_rows(rows: list[dict[str, str]]) -> dict:
             if nums:
                 profile.update({"min": min(nums), "max": max(nums), "mean": sum(nums) / len(nums)})
                 col_profiles.append(profile)
-        # else:
-        #     count: dict[str: int] = {}
-        #     for v in usable:
-        #         count[v] = count.get(v, 0)+1
+        else:
+            counts: dict[str: int] = {}
+            for v in usable:
+                counts[v] = counts.get(v, 0)+1
                 
-        #     top_items = sorted()
+            top_items = sorted(counts.items(), key=lambda kv: kv[1], reverse=True)[:TOP_K]
+        
+            top = [{"value": v,"count": c} for v, c in top_items]
             
-        #     if text:
-        #         profile.update({"commen":})
+            profile.update({"most commen":top})
+            col_profiles.append(profile)
                 
     return {"n_rows": n_rows, "n_cols": len(columns), "columns": col_profiles}
 
