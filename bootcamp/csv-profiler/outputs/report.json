@@ -8,7 +8,7 @@
       "missing": 0,
       "missing_pct": 0.0,
       "unique": 34,
-      "most commen": [
+      "most common": [
         {
           "value": "Aisha",
           "count": 6
@@ -47,7 +47,7 @@
       "missing": 2,
       "missing_pct": 4.0,
       "unique": 10,
-      "most commen": [
+      "most common": [
         {
           "value": "Riyadh",
           "count": 18
@@ -81,5 +81,5 @@
       "mean": 13583.333333333334
     }
   ],
-  "timing_ms": 1.4111
+  "timing_ms": 0.9841
 }

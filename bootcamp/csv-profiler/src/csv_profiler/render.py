@@ -19,8 +19,8 @@ def render_markdown(report: dict) -> str:
     
     # write statics
     lines.append("\n## Statics:\n")
-    lines.append(f"\most common name: {report['columns'][0]['most common'][0]['value']} by {report['columns'][0]['most common'][0]['count']} times\n")
-    lines.append(f"\most common city: {report['columns'][2]['most common'][0]['value']} by {report['columns'][2]['most common'][0]['count']} times\n")
+    lines.append(f"\nmost common name: **{report['columns'][0]['most common'][0]['value']}** by **{report['columns'][0]['most common'][0]['count']}** times\n")
+    lines.append(f"\nmost common city: **{report['columns'][2]['most common'][0]['value']}** by **{report['columns'][2]['most common'][0]['count']}** times\n")
     
     
     

@@ -1,6 +1,6 @@
 # CSV Profiling Report
 
-Generated: 2025-12-18T13:16:35
+Generated: 2025-12-18T19:09:09
 
 ## Summary
 
@@ -15,6 +15,15 @@ Generated: 2025-12-18T13:16:35
 | age | number | 1 | 2.0% | 23 |
 | city | text | 2 | 4.0% | 10 |
 | salary | number | 2 | 4.0% | 30 |
+
+## Statics:
+
+
+most common name: **Aisha** by **6** times
+
+
+most common city: **Riyadh** by **18** times
+
 
 ## Notes
 
