@@ -65,7 +65,7 @@ def profile_rows(rows: list[dict[str, str]]) -> dict:
         
             top = [{"value": v,"count": c} for v, c in top_items]
             
-            profile.update({"most commen":top})
+            profile.update({"most common":top})
             col_profiles.append(profile)
                 
     return {"n_rows": n_rows, "n_cols": len(columns), "columns": col_profiles}

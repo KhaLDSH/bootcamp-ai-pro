@@ -17,6 +17,13 @@ def render_markdown(report: dict) -> str:
     for c in report["columns"]
     ])
     
+    # write statics
+    lines.append("\n## Statics:\n")
+    lines.append(f"\most common name: {report['columns'][0]['most common'][0]['value']} by {report['columns'][0]['most common'][0]['count']} times\n")
+    lines.append(f"\most common city: {report['columns'][2]['most common'][0]['value']} by {report['columns'][2]['most common'][0]['count']} times\n")
+    
+    
+    
     lines.append("\n## Notes\n")
     lines.append("- Missing values are: `''`, `na`, `n/a`, `null`, `none`, `nan` (case-insensitive)")
    
