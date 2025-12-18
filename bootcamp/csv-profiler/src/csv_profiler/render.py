@@ -19,8 +19,20 @@ def render_markdown(report: dict) -> str:
     
     # write statics
     lines.append("\n## Statics:\n")
-    lines.append(f"\nmost common name: **{report['columns'][0]['most common'][0]['value']}** by **{report['columns'][0]['most common'][0]['count']}** times\n")
-    lines.append(f"\nmost common city: **{report['columns'][2]['most common'][0]['value']}** by **{report['columns'][2]['most common'][0]['count']}** times\n")
+    lines.append("\n### TEXT data:\n")
+    lines.append(f"\nMost common name: **{report['columns'][0]['most common'][0]['value']}** by **{report['columns'][0]['most common'][0]['count']}** times\n")
+    lines.append(f"\nMost common city: **{report['columns'][2]['most common'][0]['value']}** by **{report['columns'][2]['most common'][0]['count']}** times\n")
+    
+    lines.append("\n\n### NUMERICAL  data:\n")
+    lines.append("\n***AGE***")
+    lines.append(f"\nMax age:\t **{report['columns'][1]['max']}**\n")
+    lines.append(f"\nMin age:\t **{report['columns'][1]['min']}**\n")
+    lines.append(f"\nMean for ages:\t **{report['columns'][1]['mean']:.0f}**\n")
+    lines.append("\n")
+    lines.append("\n***SALARY***")
+    lines.append(f"\nMax salary:\t **{report['columns'][3]['max']}**\n")
+    lines.append(f"\nMin salary:\t **{report['columns'][3]['min']}**\n")
+    lines.append(f"\nMean of salaries:\t **{report['columns'][3]['mean']:.2f}**\n")
     
     
     
